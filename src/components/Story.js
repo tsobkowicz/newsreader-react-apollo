@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import { getStory } from '../services/hnApi';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../styles/StoryStyles';
 import { mapTime } from '../mappers/mapTime';
 
-export const Story = ({ storyId }) => {
+export const Story = memo(function Story({ storyId }) {
   const [story, setStory] = useState({});
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const Story = ({ storyId }) => {
       </StoryMeta>
     </StoryWrapper>
   ) : null;
-};
+});
 
 Story.propTypes = {
   storyId: PropTypes.number.isRequired,
